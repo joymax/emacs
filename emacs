@@ -12,12 +12,15 @@
 (setq-default dired-omit-files-p t) ; this is buffer-local variable
 (setq dired-omit-files
     (concat dired-omit-files "\\|^\\..+$\\|\\.pdf$\\|\\.pyc$"))
+
+; Custom shortcuts
 (global-set-key (kbd "C-c b") 'windmove-left)
 (global-set-key (kbd "C-c f") 'windmove-right)
 (global-set-key (kbd "C-c p") 'windmove-up)
 (global-set-key (kbd "C-c n") 'windmove-down)
 (global-set-key (kbd "C-c v") 'previous-multiframe-window)
 (global-set-key (kbd "C-c x") 'next-multiframe-window)
+(global-set-key (kbd "C-g") 'goto-line)
 
 ; IDO mode for python
 (require 'ido)
@@ -28,6 +31,9 @@
 (require 'auto-complete-config)
 (ac-config-default)
 (global-auto-complete-mode t)
+
+; delete traling whitespaces
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ;; Frame navigation alt + [arrow keys]
 (windmove-default-keybindings 'meta)
@@ -66,4 +72,28 @@
  '(linum ((t (:inherit (shadow default) :background "color-29" :foreground "brightwhite")))))
 
 ; save window state
-(desktop-save-mode 1)
+; (desktop-save-mode 1)
+
+; enable mouse reporting for terminal emulators
+(unless window-system
+  (xterm-mouse-mode 1)
+  (global-set-key [mouse-4] (lambda ()
+                              (interactive)
+                              (scroll-down 1)))
+  (global-set-key [mouse-5] (lambda ()
+                              (interactive)
+                              (scroll-up 1))))
+
+; copy to/from OS X Buffer
+(defun copy-from-osx ()
+  (shell-command-to-string "pbpaste"))
+
+(defun paste-to-osx (text &optional push)
+  (let ((process-connection-type nil))
+    (let ((proc (start-process "pbcopy" "*Messages*" "pbcopy")))
+      (process-send-string proc text)
+      (process-send-eof proc))))
+
+(setq interprogram-cut-function 'paste-to-osx)
+(setq interprogram-paste-function 'copy-from-osx)
+

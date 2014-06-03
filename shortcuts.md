@@ -33,6 +33,7 @@
 # Editing
 
 ### Copy/paste/selection
+
  - `C-<SPACE>` - **start** of **selection** of region
  - `C-x h` - Move point to the beginning of the buffer, and set mark at the end
  - `M-@` - **select** next **word**
@@ -40,6 +41,7 @@
  - `C-w` - **cut** selected region
  - `C-y` - **paste** from buffer
  - `C-k` - **cut string** from current position (or delete it into buffer)
+ - `M-x whitespace-mode` - enable Python whitespace mode to cleanup code
 
 ### Search/replace
 
@@ -51,12 +53,18 @@
  - `C-v` - Scroll down (page down)
  - `M-v` - Scroll up (page up)
  - `M-<LEFT/RIGHT ARROWS>` - move one **word** left/right
-
+ - `M-f` - next word
+ - `M-b` - previous word
+ - `M-<` - top of file
+ - `M->` - end of file
+ 
 ### Indentation
 
  - `C-<SPACE>` - select region
  - `C-u 4 C-x <TAB>` - indent for 4 spaces
  - `C-c` - one level indent +
+ - `C-c <` - unindent 1 level (**python**)
+ - `C-c >` - indent 1 level (**python**)
 
 ### Undo/redo
  - `C+x u` - undo
