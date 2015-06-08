@@ -1,5 +1,9 @@
 # Work with windows:
 
+### Base
+
+ - `C-g` - cancel any command
+
 ### Move between windows
 
  - `C-c b` - go to left window
@@ -42,6 +46,7 @@
  - `C-y` - **paste** from buffer
  - `C-k` - **cut string** from current position (or delete it into buffer)
  - `M-x whitespace-mode` - enable Python whitespace mode to cleanup code
+ - `C-x C-v` - re-read file from filesystem
 
 ### Search/replace
 
@@ -65,10 +70,16 @@
  - `C-c` - one level indent +
  - `C-c <` - unindent 1 level (**python**)
  - `C-c >` - indent 1 level (**python**)
+ - `C-u -4 M-x indent-rigidly` - unindent for *4* spaces
 
 ### Undo/redo
  - `C+x u` - undo
 
+
+### Work with words
+
+ - `M-d` - kill up to the end of word
+ - `M-<DEL>` - kill up to beginning of word
 
 # Work with multiple files
 
@@ -81,14 +92,21 @@
  - `C-o` - open file in another window and **keep focus on dired**
  - `<RET>` - open file in same window
  - `^` - go to **parent** directory
+ - `+` - create new directory
  
 
 ## Utils
+
  - `M-x eshell` - EMACS **shell**
  - `C-u <x>` - multiply following command `<x>` times
+ - `M-<Shift>-1` - shell line
  
 ## Keyboard macros
  - `C-x (` - lets you start define a keyboard macro - basically records what you do, so do exactly what you want your macro to do
  - `C-x )` - end the definition of the keyboard macro
  - `C-x e` - executes the keyboard macro
  
+ # Syntax and code checks
+ 
+  - `M-x flycheck-mode` - enable flycheck mode
+  
